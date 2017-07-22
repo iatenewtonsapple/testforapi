@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>IANA</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <style>  
+
+#result {
+    margin: 10px;
+    width: 400px;
+    background: #eee;
+    padding: 10px;
+    border: solid black;
+    height: 40px;
+    overflow: auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<form id="form" action="" method="post">
+    <label>Press button to submit json</label>
+<!--<div><input type="submit" name="pressme"/></div>-->
+<button name="subject" type="submit" value="CSS">Press me</button>
+</form>
+<h3>Result</h3>
+<div id="result">
+</div>
+
+<script>
+
+
+    var dataFromUser= {input:"10 plus 4"};
+    var dataToSend = JSON.stringify(dataFromUser);
+    //console.log(dataToSend);
+
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(){
+            // send ajax
+            $.ajax({
+            	type : "POST", 
+                url: "http://54.225.36.21/", 
+                contentType: "application/json",
+                //dataType : "json", 
+                data: dataToSend,
+                beforeSend: function(xmlHttpRequest) {
+        			xmlHttpRequest.withCredentials = true;
+    			},
+                success : function(data) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(data);
+                    alert(data);
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+        });
+    });
+
+</script>
+</body>
+</html>
+
+
+
+
