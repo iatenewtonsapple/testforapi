@@ -13,31 +13,33 @@
 <body>
 
 <form id="form" action="" method="post">
-    <label>Press button to submit json</label>
-<!--<div><input type="submit" name="pressme"/></div>-->
-<button name="subject" type="submit" value="CSS">Press me</button>
+<input type="text" id='input2'>
+<button id="buttton" class="button" onclick="myfunction()">Enter</button>
+    <label>Press enter to convert your natural language math to latex ready syntax</label>
 </form>
 
 <script>
 
-
-    //var dataFromUser= {input:"10 plus 4"};
-    //var dataToSend = JSON.stringify(dataFromUser);
-    //console.log(dataToSend);
-
+userInput = {};
+function myfunction() {
+    
+    userInput.input = document.getElementById("input2").value;
+    alert(JSON.stringify(userInput));
+    console.log(userInput);
+}
+    
     $(document).ready(function(){
-
-        $("#submit").on('click', function(){
+        $("#button").on('click', function(){
             // send ajax
             $.ajax({
-            	type : "POST", 
+                type : "POST", 
                 url: "http://54.225.36.21/", 
                 contentType: "application/json",
                 dataType : "json", 
-                data: {"input":"3 plus 4"},
+                data: userInput,
                 beforeSend: function(xmlHttpRequest) {
-        			xmlHttpRequest.withCredentials = true;
-    			},
+                    xmlHttpRequest.withCredentials = true;
+                },
                 success : function(result) {
                     // you can see the result from the console
                     // tab of the developer tools
@@ -48,15 +50,9 @@
                     console.log(xhr, resp, text);
                 }
             })
-
             
         });
     });
-
 </script>
 </body>
 </html>
-
-
-
-
