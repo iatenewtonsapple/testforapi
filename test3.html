@@ -25,7 +25,7 @@ function myfunction() {
     
     userInput.input = document.getElementById("input2").value;
     alert(JSON.stringify(userInput));
-    console.log(userInput);
+    console.log(JSON.stringify(userInput));
 }
     
     $(document).ready(function(){
@@ -36,7 +36,7 @@ function myfunction() {
                 url: "http://54.225.36.21/", 
                 contentType: "application/json",
                 dataType : "json", 
-                data: userInput,
+                data: JSON.stringify(userInput),
                 beforeSend: function(xmlHttpRequest) {
                     xmlHttpRequest.withCredentials = true;
                 },
